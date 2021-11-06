@@ -1,0 +1,66 @@
+.ntform {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 2px solid grey;
+  //   border: 1px solid blue;
+//   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;  height: 100%;
+  &__container {
+    // border: 1px solid blue;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px;
+    padding-left: 20px;
+    font-weight: bold;
+    label {
+      //   border: 1px solid;
+      width: 70px;
+      height: 30px;
+      font-size: 20px;
+      margin-right: 20px;
+    }
+    select,
+    option,
+    input[type="text"] {
+      height: 30px;
+      border-radius: 10px;
+      //   border: 2px solid;k
+      font-size: 20px;
+      color: grey;
+      cursor: pointer;
+      padding: 0px;
+      text-align: center;
+      background-color: white;
+    }
+
+    select {
+      margin-right: 20px;
+    }
+  }
+
+  //   &__container {
+  //       position: relative;
+  //       display: flex;
+  //       flex-direction: column;
+  //       align-items: center;
+  //       justify-content: center;
+  //     //   border: 1px solid;
+  //       padding: 5px;
+  //       height: 70px;
+  //       min-width: 50px;
+  //       text-align: center;
+
+  //   }
+
+  //   div:last-child {
+  //       button {
+  //           position: absolute;
+  //           bottom: 0;
+  //           left:0;
+  //           margin-left: 20px;
+  //       }
+  //   }
+}

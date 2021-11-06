@@ -1,0 +1,18 @@
+.button {
+    &__lg {
+        width: 200px;
+        height: 50px;
+        border-radius: 10px;
+        background-color:white;
+    }
+
+    &__md {
+        width: 150px;
+    }
+
+    &__sm {
+        width: 100px;
+        height: 30px;
+        
+    }
+}

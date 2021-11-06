@@ -1,0 +1,26 @@
+.newtask {
+    // border: 1px solid red;
+    display: flex;
+    // align-items: stretch;
+    flex-direction:row;
+    justify-content:start;
+    min-height: 300px;
+
+    &__container {
+      &:first-child {
+        margin-right: 50px;
+      }
+      display: flex;
+      align-items: center;
+      // border: 2px solid green;
+
+      &:last-child {
+        align-items:unset;
+      }
+
+      h1 {
+        margin: 0px;
+      }
+    }
+
+}
