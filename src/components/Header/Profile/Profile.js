@@ -5,7 +5,7 @@ const Profile = () => {
     return (
         <div className={Styles.profile}>
             <div className={Styles.profile__icon}>
-                <i class="fa fa-user-circle fa-3x" aria-hidden="true"></i>
+                <i class="fa fa-user-circle-o fa-3x" color="white" aria-hidden="true"></i>
             </div>
         </div>
     );

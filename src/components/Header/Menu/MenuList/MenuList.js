@@ -7,7 +7,7 @@ class MenuList extends Component {
       <div className={Styles.menulist}>
         <ul>
           <li><a href="#">Home</a></li>
-          <li><a href="#">Add New Task</a></li>
+          <li><a href="#">New Task</a></li>
           <li><a href="#">Home</a></li>
         </ul>
       </div>

@@ -1,10 +1,9 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Styles from "./Content.module.scss";
-import NewTask from "./NewTask/NewTask";
-const Content = () => {
-  return <div className={Styles.content}>
-      <NewTask></NewTask>
-  </div>;
+
+const Content = (props) => {
+  return <div className={Styles.content}>{props.children}</div>;
 };
 
 export default Content;
