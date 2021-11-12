@@ -9,17 +9,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
   return (
     <div className={Styles.app}>
-      <Header></Header>
-      <Wrapper>
-        <Content>
-          <BrowserRouter>
+      <BrowserRouter>
+        <Header></Header>
+        <Wrapper>
+          <Content>
             <Routes>
-              <Route exact path="/new-task" element={<NewTask/>}></Route>
-              <Route exact path="/home" element={<Dashboard/>}></Route>
+              <Route exact path="/new-task" element={<NewTask />}></Route>
+              <Route exact path="/dashboard" element={<Dashboard />}></Route>
             </Routes>
-          </BrowserRouter>
-        </Content>
-      </Wrapper>
+          </Content>
+        </Wrapper>
+      </BrowserRouter>
     </div>
   );
 }
