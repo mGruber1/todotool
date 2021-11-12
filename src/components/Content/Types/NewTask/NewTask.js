@@ -14,58 +14,29 @@ const NewTask = () => {
       taskType: "",
       taskPriority: "",
       taskDueDate: "",
+      taskComment: ""
     },
   });
 
-  const taskNameChangedHandler = (event) => {
-    setTask((prevState) => ({
-      task: {
-        ...prevState.task,
-        taskName: event.target.value,
-      },
-    }));
-  };
+  const formSubmitHandler = (event) => {
+    event.preventDefault();
+    // console.log("submitted");
 
-  const taskTypeChangedHandler = (event) => {
-    setTask((prevState) => ({
-      task: {
-        ...prevState.task,
-        taskType: event.target.value,
-      },
-    }));
-  };
+    // Check if one or more inputs have been left empty
 
-  const taskPriorityChangedHandler = (event) => {
-    setTask((prevState) => ({
-      task: {
-        ...prevState.task,
-        taskPriority: event.target.value,
-      },
-    }));
-  };
+    for (let i = 0; i <= 4; i++) {
+      if (event.target.form[i].value === "") {
+        setErrMsg("Hey buddy, you've left one or more fields empty!");
+        // console.log("ive done this: " + i + " times!");
+        return
+      }
+    }
 
-  const taskDueDateChangedHandler = (event) => {
-    setTask((prevState) => ({
-      task: {
-        ...prevState.task,
-        taskDueDate: event.target.value,
-      },
-    }));
-  };
-
-  const submitBtnHandler = (event) => {
-    if (
-      task.task.taskName === "" ||
-      task.task.taskDueDate === "" ||
-      task.task.taskPriority === "" ||
-      task.task.taskType === ""
-    ) {
-      setErrMsg("One Or More Fields have been left empty!");
-    } else {
-      // Check if data has been already sent, or not!
-
-      setErrMsg("All Fine Buddy!");
-      const requestOptions = {
+    // Inputs have been validated, errMsg is All Fine
+    setErrMsg("All Fine!")
+    console.dir(task.task)
+    // Post Input Values to API-Endpoint
+          const requestOptions = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(task.task),
@@ -73,73 +44,122 @@ const NewTask = () => {
       fetch("http://localhost:5000/task-write", requestOptions)
         .then((response) => response.json())
         .then((data) => this.setState({ postId: data.id }));
+    
+
+    // console.dir(task.task);
+    // Reset Inputs
+    formResetHandler(event);
+  };
+
+  const formResetHandler = (event) => {
+    for (let i = 0; i <= 4; i++) {
+      event.target.form[i].value = "";
     }
   };
-  // console.dir(JSON.stringify(task.task));
-  const resetBtnHandler = (event) => {
-    console.log("Here comes the reset ...!");
+
+  const inputsChangedHandler = (event) => {
+    // console.log("INPUT CHANGED!");
+    let target = event.target;
+    let name = event.target.name;
+    let value = event.target.value;
+
+    setTask((prevState) => ({
+      task: {
+        ...prevState.task,
+        [name]: value,
+      },
+    }));
   };
+
+  // const submitBtnHandler = (event) => {
+  //   if (
+  //     task.task.taskName === "" ||
+  //     task.task.taskDueDate === "" ||
+  //     task.task.taskPriority === "" ||
+  //     task.task.taskType === ""
+  //   ) {
+  //     setErrMsg("One Or More Fields have been left empty!");
+  //   } else {
+  //     // Check if data has been already sent, or not!
+
+  //     setErrMsg("All Fine Buddy!");
+  //     const requestOptions = {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(task.task),
+  //     };
+  //     fetch("http://localhost:5000/task-write", requestOptions)
+  //       .then((response) => response.json())
+  //       .then((data) => this.setState({ postId: data.id }));
+  //   }
+  // };
+  // console.dir(JSON.stringify(task.task));
 
   return (
     <div className={Styles.newtask}>
       <div className={Styles.newtask__heading}>
         <h1>New Task</h1>
       </div>
-      <div className={Styles.newtask__controlgroup}>
-        <input
-          onChange={taskNameChangedHandler}
-          type="text"
-          name="task_name"
-          placeholder="Task Name"
-        />
-      </div>
+      <form onSubmit={formSubmitHandler}>
+        <div className={Styles.newtask__controlgroup}>
+          <input
+            onChange={inputsChangedHandler}
+            type="text"
+            name="taskName"
+            placeholder="Task Name"
+          />
+        </div>
+        <div className={Styles.newtask__controlgroup}>
+          <input onChange={inputsChangedHandler} type="text" name="taskComment" placeholder="Task Comment"/>
+        </div>
+        <div className={Styles.newtask__controlgroup}>
+          <label>Task Type</label>
+          <select onChange={inputsChangedHandler} name="taskType">
+            {/* Types should be able to be created dynamically to the users needs */}
+            <option value=""></option>
+            <option value="action">Action</option>
+            <option value="research">Research</option>
+            <option value="else">Else</option>
+          </select>
+        </div>
+        <div className={Styles.newtask__controlgroup}>
+          <label>Task Priority</label>
+          <select onChange={inputsChangedHandler} name="taskPriority">
+            <option value=""></option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+            <option value="backlog">Backlog</option>
+          </select>
+        </div>
+        <div className={Styles.newtask__controlgroup}>
+          <label>Due To</label>
+          <input
+            onChange={inputsChangedHandler}
+            type="date"
+            name="taskDueDate"
+          />
+        </div>
+        <div className={Styles.newtask__controlgroup}>
+          <button
+            onClick={formSubmitHandler}
+            className={Styles.btnsend}
+            type="submit"
+            value="ABSENDEN"
+          >
+            ABSENDEN
+          </button>
+          <button
+            onClick={formResetHandler}
+            className={Styles.btnreset}
+            type="button"
+            value="RESET"
+          >
+            RESET
+          </button>
+        </div>
 
-      <div className={Styles.newtask__controlgroup}>
-        <label>Task Type</label>
-        <select onChange={taskTypeChangedHandler} name="task_type">
-          {/* Types should be able to be created dynamically to the users needs */}
-          <option value=""></option>
-          <option value="action">Action</option>
-          <option value="research">Research</option>
-          <option value="else">Else</option>
-        </select>
-      </div>
-      <div className={Styles.newtask__controlgroup}>
-        <label>Task Priority</label>
-        <select onChange={taskPriorityChangedHandler} name="task_priority">
-          <option value=""></option>
-          <option value="low">Low</option>
-          <option value="medium">Medium</option>
-          <option value="high">High</option>
-          <option value="backlog">Backlog</option>
-        </select>
-      </div>
-      <div className={Styles.newtask__controlgroup}>
-        <label>Due To</label>
-        <input
-          onChange={taskDueDateChangedHandler}
-          type="date"
-          name="task_expiry"
-        />
-      </div>
-      <div className={Styles.newtask__controlgroup}>
-        <button
-          onClick={submitBtnHandler}
-          className={Styles.btnsend}
-          type="button"
-          value="Absenden"
-        >
-          Absenden
-        </button>
-        <button
-          onClick={resetBtnHandler}
-          className={Styles.btnreset}
-          type="button"
-          value="Reset"
-        >
-          Reset
-        </button>
-      </div>
+      </form>
       <p>{errMsg}</p>
     </div>
   );

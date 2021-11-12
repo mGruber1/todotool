@@ -4,6 +4,7 @@ import Wrapper from "./components/Wrapper/Wrapper";
 import Content from "./components/Content/Content";
 import NewTask from "./components/Content/Types/NewTask/NewTask";
 import Dashboard from "./components/Content/Types/Dashboard/Dashboard";
+import TaskBoard from "./components/Content/Types/TaskBoard/TaskBoard";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             <Routes>
               <Route exact path="/new-task" element={<NewTask />}></Route>
               <Route exact path="/dashboard" element={<Dashboard />}></Route>
+              <Route exact path="/task-board" element={<TaskBoard/>}></Route>
             </Routes>
           </Content>
         </Wrapper>

@@ -1,0 +1,33 @@
+.taskboard {
+  width: 100%;
+
+  &__header {
+    // border: 1px solid;
+    margin-bottom: 50px;
+    ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      list-style-type: none;
+      padding: 0px;
+      margin: 0px;
+
+      li:last-child {
+        padding-right: 0px;
+      }
+      li {
+        display: inline;
+        padding-right: 20px;
+
+        a {
+          text-decoration: none;
+          color: black;
+
+          &:hover {
+            color: #0081a7;
+          }
+        }
+      }
+    }
+  }
+}
