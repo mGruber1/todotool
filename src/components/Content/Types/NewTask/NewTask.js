@@ -93,19 +93,19 @@ const NewTask = () => {
           <select onChange={inputsChangedHandler} name="taskType">
             {/* Types should be able to be created dynamically to the users needs */}
             <option value=""></option>
-            <option value="action">Action</option>
-            <option value="research">Research</option>
-            <option value="else">Else</option>
+            <option value="Action">Action</option>
+            <option value="Research">Research</option>
+            <option value="Else">Else</option>
           </select>
         </div>
         <div className={Styles.newtask__controlgroup}>
           <label>Task Priority</label>
           <select onChange={inputsChangedHandler} name="taskPriority">
             <option value=""></option>
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-            <option value="backlog">Backlog</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+            <option value="Backlog">Backlog</option>
           </select>
         </div>
         <div className={Styles.newtask__controlgroup}>
