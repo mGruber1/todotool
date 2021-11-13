@@ -32,3 +32,10 @@ app.post("/task-write", (request, response) => {
         console.log(result)
     });
 });
+
+app.get("/get-tasks",(request, response) => {
+    database.collection("tasks").find({}).toArray((err, result) => {
+        if(err) throw err
+        response.send(result)
+    })
+})

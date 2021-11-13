@@ -2,11 +2,6 @@ import React, { useState } from "react";
 import Styles from "./NewTask.module.scss";
 
 const NewTask = () => {
-  // <MOCK-USER>
-  const [user, setUser] = useState("Max");
-
-  // /> MOCK-USER
-
   const [errMsg, setErrMsg] = useState("");
   const [task, setTask] = useState({
     task: {
@@ -14,7 +9,8 @@ const NewTask = () => {
       taskType: "",
       taskPriority: "",
       taskDueDate: "",
-      taskComment: ""
+      taskComment: "",
+      taskStatus: "new"
     },
   });
 
@@ -28,23 +24,22 @@ const NewTask = () => {
       if (event.target.form[i].value === "") {
         setErrMsg("Hey buddy, you've left one or more fields empty!");
         // console.log("ive done this: " + i + " times!");
-        return
+        return;
       }
     }
 
     // Inputs have been validated, errMsg is All Fine
-    setErrMsg("All Fine!")
-    console.dir(task.task)
+    setErrMsg("All Fine!");
+    // console.dir(task.task)
     // Post Input Values to API-Endpoint
-          const requestOptions = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(task.task),
-      };
-      fetch("http://localhost:5000/task-write", requestOptions)
-        .then((response) => response.json())
-        .then((data) => this.setState({ postId: data.id }));
-    
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(task.task),
+    };
+    fetch("http://localhost:5000/task-write", requestOptions)
+      .then((response) => response.json())
+      .then((data) => this.setState({ postId: data.id }));
 
     // console.dir(task.task);
     // Reset Inputs
@@ -71,30 +66,6 @@ const NewTask = () => {
     }));
   };
 
-  // const submitBtnHandler = (event) => {
-  //   if (
-  //     task.task.taskName === "" ||
-  //     task.task.taskDueDate === "" ||
-  //     task.task.taskPriority === "" ||
-  //     task.task.taskType === ""
-  //   ) {
-  //     setErrMsg("One Or More Fields have been left empty!");
-  //   } else {
-  //     // Check if data has been already sent, or not!
-
-  //     setErrMsg("All Fine Buddy!");
-  //     const requestOptions = {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify(task.task),
-  //     };
-  //     fetch("http://localhost:5000/task-write", requestOptions)
-  //       .then((response) => response.json())
-  //       .then((data) => this.setState({ postId: data.id }));
-  //   }
-  // };
-  // console.dir(JSON.stringify(task.task));
-
   return (
     <div className={Styles.newtask}>
       <div className={Styles.newtask__heading}>
@@ -110,7 +81,12 @@ const NewTask = () => {
           />
         </div>
         <div className={Styles.newtask__controlgroup}>
-          <input onChange={inputsChangedHandler} type="text" name="taskComment" placeholder="Task Comment"/>
+          <input
+            onChange={inputsChangedHandler}
+            type="text"
+            name="taskComment"
+            placeholder="Task Comment"
+          />
         </div>
         <div className={Styles.newtask__controlgroup}>
           <label>Task Type</label>
@@ -158,7 +134,6 @@ const NewTask = () => {
             RESET
           </button>
         </div>
-
       </form>
       <p>{errMsg}</p>
     </div>

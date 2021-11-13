@@ -2,7 +2,7 @@
   width: 100%;
 
   &__header {
-    // border: 1px solid;
+    border: 1px solid;
     margin-bottom: 50px;
     ul {
       display: flex;
@@ -27,6 +27,36 @@
             color: #0081a7;
           }
         }
+      }
+    }
+
+
+  }
+
+  &__content {
+    width: 100%;
+    // border: 1px solid;
+    display: flex;
+    justify-content: center;
+    table {
+      border-collapse: collapse;
+      border: 1px solid;
+      text-align: center;
+      th, td {
+        // border: 1px solid;
+        padding:10px;
+      }
+      tr:nth-child(even) {
+        background-color: grey;
+        color: white;
+      }
+
+      tr:hover {
+        &:first-child {
+          cursor:unset;
+          border: none;
+        }
+        cursor: pointer;
       }
     }
   }
