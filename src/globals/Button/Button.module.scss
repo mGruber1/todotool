@@ -1,18 +1,27 @@
 .button {
-    &__lg {
-        width: 200px;
-        height: 50px;
-        border-radius: 10px;
-        background-color:white;
-    }
+  &__lg {
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: white;
+  }
 
-    &__md {
-        width: 150px;
-    }
+  &__md {
+    width: 150px;
+  }
 
-    &__sm {
-        width: 100px;
-        height: 30px;
-        
-    }
+  &__sm {
+    width: 100px;
+    height: 30px;
+  }
+
+  .btnsend {
+    background-color: #5cdb5c;
+    border-color: #5cdb5c;
+  }
+
+  .btnreset {
+    background-color: #ffff00;
+    border-color: #ffff00;
+  }
 }

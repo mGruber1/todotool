@@ -29,7 +29,7 @@ app.post("/task-write", (request, response) => {
             return response.status(500).send(error);
         }
         response.send(result.result);
-        console.log(result)
+        console.log(result.result)
     });
 });
 
